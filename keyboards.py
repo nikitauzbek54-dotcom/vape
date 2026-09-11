@@ -23,6 +23,7 @@ STATUSES = {
 }
 
 
+# ============ ГЛАВНОЕ МЕНЮ ============
 def main_menu():
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🛍 Каталог", callback_data="catalog")],
@@ -61,10 +62,10 @@ def product_menu(product_id: int):
 def cart_menu(items: list):
     rows = []
     for item in items:
-        rows.append([
-            InlineKeyboardButton(text=f"{item['name']} ({item['quantity']}шт)",
-                                 callback_data="noop"),
-        ])
+        rows.append([InlineKeyboardButton(
+            text=f"{item['name']} ({item['quantity']}шт)",
+            callback_data="noop"
+        )])
         rows.append([
             InlineKeyboardButton(text="➖", callback_data=f"qty_{item['cart_id']}_-1"),
             InlineKeyboardButton(text=f"{item['quantity']} × {item['price']}₽",
@@ -137,7 +138,7 @@ def back_to_main_menu():
     ])
 
 
-# ===== ADMIN =====
+# ============ АДМИНКА ============
 def admin_menu():
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="📦 Товары", callback_data="adm_products")],
@@ -176,15 +177,15 @@ def admin_product_edit_menu(product_id: int):
 
 
 def admin_orders_menu():
-    rows = [[InlineKeyboardButton(
-        text=f"{STATUSES['new']}", callback_data="adm_ord_new"
-    )]]
-    rows.append([InlineKeyboardButton(text="✅ Принятые", callback_data="adm_ord_accepted")])
-    rows.append([InlineKeyboardButton(text="🚚 В доставке", callback_data="adm_ord_delivery")])
-    rows.append([InlineKeyboardButton(text="✔️ Завершённые", callback_data="adm_ord_done")])
-    rows.append([InlineKeyboardButton(text="❌ Отменённые", callback_data="adm_ord_cancelled")])
-    rows.append([InlineKeyboardButton(text="📋 Все заказы", callback_data="adm_ord_all")])
-    rows.append([InlineKeyboardButton(text="⬅️ Назад", callback_data="adm_back")])
+    rows = [
+        [InlineKeyboardButton(text="🆕 Новые", callback_data="adm_ord_new")],
+        [InlineKeyboardButton(text="✅ Принятые", callback_data="adm_ord_accepted")],
+        [InlineKeyboardButton(text="🚚 В доставке", callback_data="adm_ord_delivery")],
+        [InlineKeyboardButton(text="✔️ Завершённые", callback_data="adm_ord_done")],
+        [InlineKeyboardButton(text="❌ Отменённые", callback_data="adm_ord_cancelled")],
+        [InlineKeyboardButton(text="📋 Все заказы", callback_data="adm_ord_all")],
+        [InlineKeyboardButton(text="⬅️ Назад", callback_data="adm_back")],
+    ]
     return InlineKeyboardMarkup(inline_keyboard=rows)
 
 
