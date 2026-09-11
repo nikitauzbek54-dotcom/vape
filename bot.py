@@ -1,6 +1,5 @@
 import asyncio
 import os
-from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.fsm.storage.memory import MemoryStorage
@@ -8,12 +7,19 @@ from aiogram.fsm.storage.memory import MemoryStorage
 from database import Database
 from handlers import user, admin
 
-load_dotenv()
+# ============ ЗНАЧЕНИЯ ЗАХАРДКОЖЕНЫ ДЛЯ ТЕСТА ============
+BOT_TOKEN = "8913182027:AAHW2aA8lXDo5JSV0dzP8dzCpWYIy6nNszU"
+OWNER_ID = 8976601589
+MANAGER_ID = 8943055976
+DATABASE_URL = os.getenv("DATABASE_URL")  # вот это оставляем из переменных
 
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-OWNER_ID = int(os.getenv("OWNER_ID", 0))
-MANAGER_ID = int(os.getenv("MANAGER_ID", 0))
-DATABASE_URL = os.getenv("DATABASE_URL")
+if not DATABASE_URL:
+    print("❌ DATABASE_URL не задан! Добавь переменную в Railway → Variables")
+    import sys
+    sys.exit(1)
+
+print("✅ BOT_TOKEN загружен (хардкод)")
+print("✅ DATABASE_URL загружен")
 
 db = Database(DATABASE_URL)
 
