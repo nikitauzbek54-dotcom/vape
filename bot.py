@@ -8,7 +8,7 @@ from database import Database
 from handlers import user, admin
 
 # ============ ЗНАЧЕНИЯ ЗАХАРДКОЖЕНЫ ДЛЯ ТЕСТА ============
-BOT_TOKEN = "8913182027:AAHW2aA8lXDo5JSV0dzP8dzCpWYIy6nNszU"
+BOT_TOKEN = "8913182027:AAH09O1a3WCIl_iKgOmIXbJIzvrlbRxu3OI"
 OWNER_ID = 8976601589
 MANAGER_ID = 8943055976
 DATABASE_URL = os.getenv("DATABASE_URL")  # вот это оставляем из переменных
